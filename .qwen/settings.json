@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl *)",
+      "Read(C:\\Users\\yangl\\.qwen/**)"
+    ]
+  },
+  "$version": 3
+}
