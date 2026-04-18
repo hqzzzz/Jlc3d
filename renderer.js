@@ -15,13 +15,8 @@ const modelDownloadBtn = document.getElementById('modelDownloadBtn');
 const logContainer = document.getElementById('logContainer');
 const pathLabel = document.getElementById('pathLabel');
 const changePathBtn = document.getElementById('changePathBtn');
-const aboutBtn = document.getElementById('aboutBtn');
 const minimizeBtn = document.getElementById('minimizeBtn');
 const closeBtn = document.getElementById('closeBtn');
-
-// 关于对话框元素
-const aboutDialog = document.getElementById('aboutDialog');
-const closeAboutBtn = document.getElementById('closeAboutBtn');
 
 // 日志输出（带链接记录）
 function logMessage(msg, link = null, linkText = null) {
@@ -67,10 +62,6 @@ function showResultSection() {
 
 function hideResultSection() {
   resultSection.style.display = 'none';
-}
-
-function showAbout() {
-  aboutDialog.style.display = 'flex';
 }
 
 async function selectDownloadPath() {
@@ -288,7 +279,6 @@ async function downloadModel() {
 queryBtn.addEventListener('click', queryProduct);
 modelDownloadBtn.addEventListener('click', downloadModel);
 changePathBtn.addEventListener('click', selectDownloadPath);
-aboutBtn.addEventListener('click', showAbout);
 closeAboutBtn.addEventListener('click', hideAbout);
 
 // 点击对话框外部关闭

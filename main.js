@@ -6,8 +6,6 @@ const axios = require('axios');
 
 // 统一 User-Agent
 const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, compatible) Chrome/120.0.0.0 Safari/537.36';
-
-// 配置 axios 默认 User-Agent
 axios.defaults.headers.common['User-Agent'] = USER_AGENT;
 
 // 配置目录
@@ -57,12 +55,16 @@ function createWindow() {
     show: false
   });
 
-  mainWindow.loadFile('index.html');
+  // 拦截所有新窗口请求，在系统浏览器中打开外部链接
+  mainWindow.webContents.setWindowOpenHandler(({ url }) => {
+    shell.openExternal(url);
+    return { action: 'deny' };
+  });
 
+  mainWindow.loadFile('index.html');
   mainWindow.once('ready-to-show', () => {
     mainWindow.show();
   });
-
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
@@ -176,22 +178,15 @@ ipcMain.handle('get-model-info', async (event, packageUuid) => {
 // IPC 处理器 - 下载 STEP 文件（弹出保存对话框）
 ipcMain.handle('download-step-file', async (event, modelUrl, filename, defaultPath) => {
   try {
-    // 显示保存对话框，让用户确认文件名和位置
     const saveResult = await dialog.showSaveDialog(mainWindow, {
       defaultPath: path.join(defaultPath || os.homedir(), filename),
       filters: [{ name: 'STEP 文件', extensions: ['step', 'stp'] }]
     });
-
     if (saveResult.canceled || !saveResult.filePath) {
       return { success: false, error: '用户取消了下载' };
     }
-
-    // 下载文件
     const response = await axios.get(modelUrl, { responseType: 'arraybuffer' });
-
-    // 保存到用户选择的路径
     fs.writeFileSync(saveResult.filePath, response.data);
-
     return { success: true, filepath: saveResult.filePath };
   } catch (error) {
     return { success: false, error: error.message };

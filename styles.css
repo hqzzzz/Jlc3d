@@ -47,10 +47,15 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  text-decoration: none;
 }
 
 .titlebar-btn:hover {
   background-color: rgba(255, 255, 255, 0.1);
+}
+
+.titlebar-btn.github-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .titlebar-btn.close:hover {

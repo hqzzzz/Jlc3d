@@ -18,8 +18,8 @@
 
 1. 克隆项目：
 ```bash
-git clone https://github.com/zhutongxueya/JLC3DDownload.git
-cd JLC3DDownload
+git clone https://github.com/hqzzzz/Jlc3d.git
+cd Jlc3d
 ```
 
 2. 安装依赖：
