@@ -27,10 +27,20 @@
       <input type="text" id="codeInput" placeholder="例如：C8734" value="C8734">
       <button id="queryBtn" class="btn-primary">查询</button>
       <button id="modelDownloadBtn" class="btn-primary btn-download-only">下载 3D 模型</button>
+      <button id="edit3dBtn" class="btn-primary btn-download-only">3D 编辑</button>
+    </div>
+
+    <div class="path-section">
+      <span id="pathLabel" class="path-label">下载位置：桌面</span>
+      <button id="changePathBtn" class="btn-secondary">更改</button>
     </div>
 
     <div id="resultSection" class="result-section" style="display: none;">
       <div class="result-header">查询结果</div>
+      <div id="datasheetBar" class="datasheet-bar" style="display: none;">
+        <span class="datasheet-title" id="datasheetTitle">数据手册</span>
+        <a href="#" class="datasheet-link" id="datasheetLink"></a>
+      </div>
       <div class="two-column-preview">
         <div class="preview-column">
           <div class="column-header">引脚图</div>
@@ -44,6 +54,12 @@
             <div id="pcbContainer" class="eda-container"></div>
           </div>
         </div>
+        <div class="preview-column">
+          <div class="column-header">3D 预览 <span id="model3dInfo" class="model-3d-info"></span></div>
+          <div class="column-content">
+            <div id="model3dContainer" class="model-3d-container"></div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -53,6 +69,7 @@
     </div>
   </div>
 
+  <script src="vendor/objviewer.js"></script>
   <script src="renderer.js"></script>
 </body>
 </html>

@@ -1,0 +1,22 @@
+process.chdir('E:/LCEDA/Jlc3d');
+const {app,BrowserWindow}=require('electron');
+const fs=require('fs');
+const {startStaticServer}=require('./server.js');
+app.disableHardwareAcceleration();
+app.whenReady().then(async()=>{
+  const {server,baseUrl}=await startStaticServer({root:'E:/LCEDA/Jlc3d/vendor/chili3d',filesDir:'E:/LCEDA/Jlc3d/.tmp_m'});
+  const url=`${baseUrl}/index.html?url=${encodeURIComponent(`${baseUrl}/files/C8734.step`)}`;
+  const win=new BrowserWindow({width:1400,height:900,show:false,webPreferences:{nodeIntegration:false,contextIsolation:true}});
+  const logs=[];
+  win.webContents.on('console-message',(_e,l,m)=>{if(/error|uncaught|fail|undefined is not/i.test(m))logs.push(String(m).slice(0,120))});
+  win.webContents.on('did-fail-load',(_e,ec,de)=>logs.push('FAILLOAD '+ec+' '+de));
+  await win.loadURL(url);
+  await new Promise(r=>setTimeout(r,28000));
+  win.maximize();
+  await new Promise(r=>setTimeout(r,2000));
+  const img=await win.webContents.capturePage();
+  fs.writeFileSync('E:/LCEDA/Jlc3d/.tmp_ds.png', img.toPNG());
+  console.log('ALERTS='+JSON.stringify(logs.slice(0,6)));
+  console.log('SHOT '+img.getSize().width+'x'+img.getSize().height);
+  app.quit();
+});
