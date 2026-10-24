@@ -123,6 +123,7 @@ async function openEditorWindow(modelFileName) {
   editorWindow.loadURL(target);
   editorWindow.once('ready-to-show', () => {
     editorWindow.show();
+    editorWindow.maximize();
   });
   editorWindow.on('closed', () => {
     editorWindow = null;

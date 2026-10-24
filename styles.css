@@ -66,8 +66,9 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  padding: 10px 20px 20px;
+  padding: 10px 20px 44px;
   background-color: #f8f9fa;
+  overflow: hidden;
 }
 
 /* 标题 */
@@ -347,7 +348,7 @@ body {
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   overflow: hidden;
-  min-height: 150px;
+  min-height: 100px;
 }
 
 .log-header {
@@ -384,13 +385,19 @@ body {
 }
 
 .path-section {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: 8px;
-  margin: 6px 0 10px;
-  padding: 6px 12px;
-  background: #f7f8fa;
-  border-radius: 6px;
+  padding: 8px 20px;
+  background: #fff;
+  border-top: 1px solid #e0e0e0;
+  z-index: 100;
+  flex-shrink: 0;
 }
 
 .path-label {
