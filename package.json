@@ -36,6 +36,7 @@
       "styles.css",
       "package.json",
       "vendor/chili3d/**",
+      "vendor/objviewer.js",
       "LICENSE",
       "NOTICE.md",
       "resources/icon.ico"
