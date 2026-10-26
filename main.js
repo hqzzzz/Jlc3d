@@ -89,6 +89,7 @@ async function openEditorWindow(modelFileName) {
     width: 1400,
     height: 900,
     center: true,
+    icon: path.join(__dirname, 'resources', 'icon.ico'),
     title: '3D 模型编辑器 - Chili3D',
     autoHideMenuBar: true,
     show: false,
@@ -136,6 +137,7 @@ function createWindow() {
     width: 1000,
     height: 800,
     center: true,
+    icon: path.join(__dirname, 'resources', 'icon.ico'),
     frame: false,
     webPreferences: {
       nodeIntegration: false,

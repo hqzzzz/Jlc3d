@@ -37,7 +37,8 @@
       "package.json",
       "vendor/chili3d/**",
       "LICENSE",
-      "NOTICE.md"
+      "NOTICE.md",
+      "resources/icon.ico"
     ],
     "extraMetadata": {
       "main": "main.js"
@@ -51,7 +52,8 @@
           ]
         }
       ],
-      "requestedExecutionLevel": "asInvoker"
+      "requestedExecutionLevel": "asInvoker",
+      "icon": "resources/icon.ico"
     },
     "nsis": {
       "oneClick": false,
